@@ -4,7 +4,7 @@
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
   <b-navbar-brand href="#">
-    <router-link :to="{ path: '/', name: 'homepage-component' }" class="navbar-item">
+    <router-link :to="{ path: '/', name: 'homepage-component' }" class="navbar-item" style = "color: cornsilk">
       <h3>ECommerce</h3>
     </router-link>
   </b-navbar-brand>

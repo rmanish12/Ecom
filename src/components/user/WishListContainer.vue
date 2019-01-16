@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="app">
+  <div class="container" id="app" style = "margin-bottom: 650px">
     <div class="row">
         <div v-for="product in productsInWishlist" :key="product.id" class="col-md-4 col-6 my-1">
             <div class="card h-100">

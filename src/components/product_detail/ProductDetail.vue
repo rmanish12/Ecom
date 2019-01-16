@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container" id="app">
+    <div class="container" id="app" style = "margin-bottom: 35px">
     <div class="row">
         
         <b-modal id="modal-center" centered title="Checkout" v-model="isCheckoutSection">

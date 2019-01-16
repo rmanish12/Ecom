@@ -12,13 +12,17 @@
     >
 
       <!-- Text slides with image -->
-      <b-carousel-slide style = "background-size: cover"
-                        img-src="../../static/images/promo1.jpg"
-      ></b-carousel-slide>
+      <router-link to = "/product-detail/1">
+        <b-carousel-slide style = "background-size: cover"
+                            img-src="../../static/images/promo1.jpg"
+        ></b-carousel-slide>
+      </router-link>
 
-      <b-carousel-slide style = "background-size: cover"
-                        img-src="../../static/images/promo2.jpg"
-      ></b-carousel-slide>
+      <router-link to = "/product-detail/2">
+        <b-carousel-slide style = "background-size: cover"
+                            img-src="../../static/images/promo2.jpg"
+        ></b-carousel-slide>
+      </router-link>
 
       <!-- Slides with custom text -->
       <!-- <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
