@@ -43,7 +43,7 @@
         </div>
       </b-navbar-nav> -->
       <div class="text-center" @click="showCheckoutModal">
-        <b-button variant="dark">
+        <b-button variant="dark" style = "width: 100%">
           Cart
           <b-badge variant="light">
             {{ numProductsAdded }} <span class="sr-only"></span>

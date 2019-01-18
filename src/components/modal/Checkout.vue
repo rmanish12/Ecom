@@ -9,17 +9,43 @@
                 </h3>
                    
             </div>
-            <div v-for="product in products" :key="product.id" v-if="!isCheckoutSection">
-                <!-- <button class="is-pulled-right button is-info is-inverted" @click="removeFromCart(product.id)">{{ removeLabel }}</button> -->
-                <!-- <b-btn size="sm" class="delete" variant="primary" type="submit">
-                    Login
-                </b-btn> -->
+            <!-- <b-table striped hover :items="products">
+            </b-table> -->
+            <!-- <div v-for="product in products" :key="product.id" v-if="!isCheckoutSection">
                 <p><span style = "font-weight: bold">{{ product.title }}</span> <span style = "font-style: italic"> {{ product.quantity > 0 ?  ` -  ${product.quantity} Qt. ` : ''}} </span> <span style = "font-weight: bold">{{ product.price }} &euro; per peice</span>
                     <b-btn size="sm" class="float" variant="danger" type="submit" @click="removeFromCart(product.id)">
                     X
                 </b-btn>
-                </p>
-                
+                </p>                
+            </div> -->
+            <div v-if="products.length !== 0 & !isCheckoutSection">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  v-for="product in products" :key="product.id">
+                            <td>{{ product.title }}</td>
+                            <td>{{ product.quantity > 0 ?  `${product.quantity}` : ''}}</td>
+                            <!-- <td><b-form-select v-model="selected" :options="quantityArray" class="mb-3" @input="onSelectQuantity(product.id)"/></td> -->
+                            <td>{{ product.price }} &euro;</td>
+                            <td>
+                                <b-btn size="sm" class="float" variant="danger" type="submit" @click="removeFromCart(product.id)">
+                                    X
+                                </b-btn>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr/>
+
+                <div style="text-align: right; font-weight: bold;">Total: <span v-show="products.length > 0 && !isCheckoutSection">{{ buyLabel }}</span></div>
             </div>
 
             <div v-if="products.length === 0">
@@ -32,10 +58,10 @@
 
             <div slot="modal-footer" class="w-100">
                 <b-btn size="sm" class="float" variant="primary" type="submit" @click="onNextBtn" v-show="products.length > 0 && !isCheckoutSection">
-                    {{ buyLabel }}
+                    Buy
                 </b-btn>
 
-                <b-btn size="sm" class="float" variant="primary" type="submit" @click="closeModal">
+                <b-btn size="sm" class="float" variant="link" type="submit" @click="closeModal">
                     {{ closeLabel }}
                 </b-btn>
             </div>
@@ -53,9 +79,21 @@ export default {
 			removeLabel: 'Remove from cart',
 			cartEmptyLabel: 'Your cart is empty',
 			closeLabel: 'Close',
-			isCheckoutSection: false
+            isCheckoutSection: false,
+            fields: ['Product', 'Quantity', 'Price', ''],
+            quantityArray: [1,2,3,4],
+            selected: 1
 		}
 	},
+
+    mounted () {
+    this.product = this.$store.getters.getProductById(this.$route.params.id);
+    this.selected = this.product.quantity;
+
+    for (let i = 1; i <= 20; i++) {
+      this.quantityArray.push(i);
+    }
+  },
 
 	computed: {
 			products () {
@@ -92,7 +130,8 @@ export default {
 				} else {
 					productLabel = 'product';
 				}
-				return `Buy ${totalProducts} ${productLabel} at ${finalPrice}€`;
+				// return `Buy ${totalProducts} ${productLabel} at ${finalPrice}€`;
+				return `${finalPrice}€`;
 		},
 		isUserLoggedIn () {
 			return this.$store.getters.isUserLoggedIn;

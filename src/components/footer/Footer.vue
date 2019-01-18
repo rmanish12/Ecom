@@ -1,7 +1,7 @@
 <template>
     <!-- Footer -->
     <mdb-footer color="blue" class="font-small pt-4 mt-4">
-    <div class="footer-copyright text-center py-3" style = "background: whitesmoke">
+    <div class="footer-copyright text-center py-3" style = "background: wheat">
         <mdb-container fluid>
         &copy; 2019 Copyright
         </mdb-container>

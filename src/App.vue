@@ -30,6 +30,7 @@ export default {
 
 <style scoped>
   .root{
-    min-height: 100vh
+    min-height: 100vh;
+    background-color: aliceblue
   }
 </style>

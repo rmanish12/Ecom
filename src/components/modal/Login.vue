@@ -35,11 +35,14 @@
                         type="email"                      
                         required
                         v-model="email"
-                        @keyup="checkEmailOnKeyUp(email)"
+                        @input="checkEmailOnKeyUp(email)"
                         placeholder="Enter email">
                     </b-form-input>
                 </b-form-group>
-
+                <span v-if="highlightEmailWithError !== null" class="icon is-small is-right">
+                    <!-- <i :class="[highlightEmailWithError ? 'fas fa-exclamation-circle' : 'fas fa-check']">dsd</i> -->
+                    <span v-if = "highlightEmailWithError" class = "fas fa-exclamation-circle" style = "color: red">Invalid Email</span>
+                  </span>
                 <b-form-group id="InputGroup1"
                     label="Password:"
                     label-for="Input1">
@@ -47,18 +50,35 @@
                         type="password"                      
                         required
                         v-model="password"
-                        @keyup="checkPasswordOnKeyUp(password)"
+                        @input="checkPasswordOnKeyUp(password)"
                         placeholder="Enter Password">
                     </b-form-input>
                 </b-form-group>
 
+                <span v-if="highlightPasswordWithError !== null" class="icon is-small is-right">
+                  <!-- <i :class="[highlightPasswordWithError ? 'fas fa-exclamation-circle' : 'fas fa-check']"></i> -->
+                  <span v-if = "highlightPasswordWithError" class = "fas fa-exclamation-circle" style = "color: red">Invalid Password</span>
+                </span>
+
                 <div slot="modal-footer" class="w-100">
-                    <b-btn size="sm" class="float" variant="primary" type="submit">
+                    <b-btn size="sm" class="float" variant="success" type="submit" style = "width: 100%">
                     Login
                     </b-btn>
-                    <b-btn size="sm" class="float" variant="primary" @click="closeModal">
-                    Close
+                    <hr/>
+                    <b-btn size="sm" class="float" variant="primary" style = "background-color:#3b5998;width: 100%">
+                        <!-- <span class="icon icons-login_facebook_large"></span> -->
+                        <img src = "../../../static/images/fb.png" style = "height: 5%; width: 5%"/>
+                        <span class="label signup_only">Continue with Facebook</span>
                     </b-btn>
+                    <hr/>
+                    <b-btn size="sm" class="float" variant="primary" style = "background-color:white; color: darkgray; width: 100%">
+                        <!-- <span class="icon icons-login_facebook_large"></span> -->
+                        <img src = "../../../static/images/google.png" style = "height: 5%; width: 5%"/>
+                        <span class="label signup_only">Continue with Google</span>
+                    </b-btn>
+                    <!-- <b-btn size="sm" class="float" variant="link" @click="closeModal">
+                    Close
+                    </b-btn> -->
                 </div>
             </b-form>
 
