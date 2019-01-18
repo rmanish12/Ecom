@@ -145,7 +145,8 @@
 			this.$store.commit('showSignupModal', true);
     },
     showCheckoutModal () {
-        this.$store.commit('showCheckoutModal', true);
+        // this.$store.commit('showCheckoutModal', true);
+        this.$router.push({name: 'checkout-container-component'})
       }
 	}
 }

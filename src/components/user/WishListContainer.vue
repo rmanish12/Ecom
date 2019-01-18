@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="app" style = "margin-bottom: 650px">
+  <div class="container" id="app" style = "margin-bottom: 700px">
     <div class="row">
         <div v-for="product in productsInWishlist" :key="product.id" class="col-md-4 col-6 my-1">
             <div class="card h-100">
@@ -21,14 +21,20 @@
                                 isAddedBtn: product.isAddedBtn
                                 }
                             }" >
-                            {{ product.title }}
+                            <center>{{ product.title }}</center>
                         </router-link>
                     </div>
                     <div>
                         <span class="badge badge-pill badge-info">${{ product.price }}</span>
+                        <!-- <right><b-btn size="sm" class="float" variant="link" @click="remove(product.id)">Remove From Wishlist</b-btn></right> -->
                     </div>
                 </div>
             </div>
+            
+            <div v-if="productsInWishlist.length === 0">
+                <center><h3><p>Empty</p></h3></center>
+            </div>
+
         </div>
     </div>     
   </div>
@@ -68,6 +74,15 @@ export default {
       
       return this.productsFiltered = getByTitle(listOfProducts, titleSearched);
     }
+  },
+  remove (id) {
+    console.log('Remove')
+    let data = {
+					id: id,
+					status: false
+			}
+			this.$store.commit('removeProductsFromFavourite', id);
+			// this.$store.commit('setAddedBtn', data);
   }
 }
 </script>

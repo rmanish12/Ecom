@@ -57,7 +57,7 @@
             <div class="card h-100">
                 <div class="card-body">
                     <div class="select is-rounded is-small">
-                        <b-form-select v-model="selected" :options="quantityArray" class="mb-3" @input="onSelectQuantity(product.id)"/>
+                        <b-form-select v-model="selected" :options="quantityArray" class="mb-3" @input="onSelectQuantity(product.id)" v-if="!product.isAddedToCart"/>
                     </div>
                 <div>
                     <b-btn size="md" class="float" variant="secondary" type="submit" v-if="!isAddedBtn"
@@ -77,7 +77,7 @@
                     Buy Now
                     </b-btn>
 
-                    <b-btn size="md" class="float" variant="danger" type="submit" v-if="product.isAddedToCart" @click="removeFromCart(product.id, false)">
+                    <b-btn size="md" class="float" variant="danger" type="submit" v-if="product.isAddedToCart" @click="removeFromCart(product.id, false)" style = "width: 100%">
                     Remove From Cart
                     </b-btn>
                 </div>

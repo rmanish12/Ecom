@@ -1,24 +1,7 @@
 <template>
-	<div>
-        <b-modal id="modal-center" centered v-model="openModal" no-close-on-backdrop no-close-on-esc>
-            <div slot="modal-header" class="w-100">
-                <h3>Checkout
-                    <button type="button" class="close" aria-label="Close" @click="closeModal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </h3>
-                   
-            </div>
-            <!-- <b-table striped hover :items="products">
-            </b-table> -->
-            <!-- <div v-for="product in products" :key="product.id" v-if="!isCheckoutSection">
-                <p><span style = "font-weight: bold">{{ product.title }}</span> <span style = "font-style: italic"> {{ product.quantity > 0 ?  ` -  ${product.quantity} Qt. ` : ''}} </span> <span style = "font-weight: bold">{{ product.price }} &euro; per peice</span>
-                    <b-btn size="sm" class="float" variant="danger" type="submit" @click="removeFromCart(product.id)">
-                    X
-                </b-btn>
-                </p>                
-            </div> -->
-            <div v-if="products.length !== 0 & !isCheckoutSection">
+    <div style="margin-bottom: 670px">
+        <div>
+                    <div v-if="products.length !== 0 & !isCheckoutSection">
                 <table class="table">
                     <thead>
                         <tr>
@@ -30,7 +13,23 @@
                     </thead>
                     <tbody>
                         <tr  v-for="product in products" :key="product.id">
-                            <td><span @click="goToProduct(product.id)">{{ product.title }}</span></td>
+                            <!-- <td><span @click="goToProduct(product.id)">{{ product.title }}</span></td> -->
+                            <td><router-link
+      class="details"
+      :to="{
+        path: '/product-detail',
+        name: 'product-detail-component',
+        params: {
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          description: product.description,
+          rating: product.ratings,
+          reviews: product.reviews,
+          isAddedBtn: product.isAddedBtn
+        }
+      }"
+    >{{ product.title }}</router-link></td>
                             <!-- <td>{{ product.quantity > 0 ?  `${product.quantity}` : ''}}</td> -->
                             <td><b-form-select v-model="selected" :options="quantityArray" class="mb-3" @input="onSelectQuantity(product.id)"/></td>
                             <td>{{ product.price }} &euro;</td>
@@ -49,23 +48,18 @@
             </div>
 
             <div v-if="products.length === 0">
-                <p>{{ cartEmptyLabel }}</p>
+                <center><h3><p>{{ cartEmptyLabel }}</p></h3></center>
             </div>
 
             <div v-if="isCheckoutSection">
-                <p>You bought it.</p>
+                <center><h3>You bought it.</h3></center>
             </div>
 
-            <div slot="modal-footer" class="w-100">
-                <b-btn size="sm" class="float" variant="primary" type="submit" @click="onNextBtn" v-show="products.length > 0 && !isCheckoutSection">
+            <center><b-btn size="sm" class="float" variant="success" type="submit" @click="onNextBtn" v-show="products.length > 0 && !isCheckoutSection" style = "width: 40%; background-color: darkcyan">
                     Buy
-                </b-btn>
-
-                <b-btn size="sm" class="float" variant="link" type="submit" @click="closeModal">
-                    Cancel
-                </b-btn>
-            </div>
-        </b-modal>
+                </b-btn></center>
+    
+        </div>
     </div>
 </template>
 
