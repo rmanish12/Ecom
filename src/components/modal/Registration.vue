@@ -3,7 +3,7 @@
   <!-- <b-btn v-b-modal.modal-center>Launch centered modal</b-btn> -->
 
   <!-- Modal Component -->
-        <b-modal id="modal-center" centered v-model="openModal">
+        <b-modal id="modal-center" centered v-model="openModal" no-close-on-backdrop no-close-on-esc>
             <div slot="modal-header" class="w-100">
                 <h3>Sign Up
                     <button type="button" class="close" aria-label="Close" @click="closeModal">

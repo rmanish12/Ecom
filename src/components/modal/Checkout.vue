@@ -1,6 +1,6 @@
 <template>
 	<div>
-        <b-modal id="modal-center" centered v-model="openModal">
+        <b-modal id="modal-center" centered v-model="openModal" no-close-on-backdrop no-close-on-esc>
             <div slot="modal-header" class="w-100">
                 <h3>Checkout
                     <button type="button" class="close" aria-label="Close" @click="closeModal">
@@ -24,15 +24,15 @@
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
-                            <th>Price</th>
+                            <th>Rate</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr  v-for="product in products" :key="product.id">
                             <td>{{ product.title }}</td>
-                            <td>{{ product.quantity > 0 ?  `${product.quantity}` : ''}}</td>
-                            <!-- <td><b-form-select v-model="selected" :options="quantityArray" class="mb-3" @input="onSelectQuantity(product.id)"/></td> -->
+                            <!-- <td>{{ product.quantity > 0 ?  `${product.quantity}` : ''}}</td> -->
+                            <td><b-form-select v-model="selected" :options="quantityArray" class="mb-3" @input="onSelectQuantity(product.id)"/></td>
                             <td>{{ product.price }} &euro;</td>
                             <td>
                                 <b-btn size="sm" class="float" variant="danger" type="submit" @click="removeFromCart(product.id)">
@@ -62,7 +62,7 @@
                 </b-btn>
 
                 <b-btn size="sm" class="float" variant="link" type="submit" @click="closeModal">
-                    {{ closeLabel }}
+                    Cancel
                 </b-btn>
             </div>
         </b-modal>
@@ -81,7 +81,7 @@ export default {
 			closeLabel: 'Close',
             isCheckoutSection: false,
             fields: ['Product', 'Quantity', 'Price', ''],
-            quantityArray: [1,2,3,4],
+            quantityArray: [1,2,3,4,5,6,7,8,9,10],
             selected: 1
 		}
 	},
@@ -90,7 +90,7 @@ export default {
     this.product = this.$store.getters.getProductById(this.$route.params.id);
     this.selected = this.product.quantity;
 
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 10; i++) {
       this.quantityArray.push(i);
     }
   },
@@ -161,7 +161,17 @@ export default {
 		},
 		onPrevBtn () {
 			this.isCheckoutSection = false;
-		}
+		},
+        onSelectQuantity (id) {
+            console.log('Clicked', id)
+            console.log(this.selected)
+            let data = {
+                id: id,
+                quantity: this.selected
+            }
+            this.$store.commit('quantity', data);
+            this.selected = 1
+        }
 	}
 }
 </script>

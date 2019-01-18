@@ -17,7 +17,7 @@
             </div>
         </b-modal>
 
-        <b-modal id="modal-center" centered v-model="openModal">
+        <b-modal centered v-model="openModal" id = "modal-center" no-close-on-backdrop no-close-on-esc>
             <div slot="modal-header" class="w-100" title="Login">
                 <h3>Login
                     <button type="button" class="close" aria-label="Close" @click="closeModal">

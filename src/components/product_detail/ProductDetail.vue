@@ -108,7 +108,7 @@ export default {
     this.product = this.$store.getters.getProductById(this.$route.params.id);
     this.selected = this.product.quantity;
 
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 10; i++) {
       this.quantityArray.push(i);
     }
   },
