@@ -12,15 +12,15 @@
     >
 
       <!-- Text slides with image -->
-      <router-link to = "/product-detail/1">
+      <router-link to = "/product-detail/6">
         <b-carousel-slide style = "background-size: cover"
-                            img-src="../../static/images/promo1.jpg"
+                            img-src="../../static/images/promo3.jpg"
         ></b-carousel-slide>
       </router-link>
 
-      <router-link to = "/product-detail/2">
+      <router-link to = "/product-detail/9">
         <b-carousel-slide style = "background-size: cover"
-                            img-src="../../static/images/promo2.jpg"
+                            img-src="../../static/images/promo4.jpg"
         ></b-carousel-slide>
       </router-link>
 
