@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div>
+  <div class = "container">
+    <div class = "row">
         <div v-for="product in productsInWishlist" :key="product.id" class="col-md-4 col-6 my-1" v-if="productsInWishlist.length !== 0">
             <div class="card h-100">
                 <div style = "height: inherit"><center><img :src="product.image" class="card-img-top" style = "height:60%; width: 60%; padding: 10%;"></center></div>

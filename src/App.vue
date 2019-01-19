@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
   .header {
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 60px);
   }
 
   .footer {
