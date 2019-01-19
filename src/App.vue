@@ -1,11 +1,15 @@
 <template>
   <div class="root">
-    <header-component></header-component>
-    <router-view></router-view>
-    <footer-component></footer-component>
-    <login-modal-component></login-modal-component>
-    <registration-modal-component></registration-modal-component>
-    <checkout-modal-component></checkout-modal-component>
+    <div class = "header">
+      <header-component></header-component>
+      <router-view></router-view>
+      <login-modal-component></login-modal-component>
+      <registration-modal-component></registration-modal-component>
+      <checkout-modal-component></checkout-modal-component>
+    </div>
+    <div class = "footer">
+      <footer-component></footer-component>
+    </div>
   </div>
 </template>
 
@@ -29,8 +33,11 @@ export default {
 </script>
 
 <style scoped>
-  .root{
-    min-height: 100vh;
-    background-color: aliceblue
+  .header {
+    min-height: calc(100vh - 70px);
+  }
+
+  .footer {
+     height: 50px;
   }
 </style>

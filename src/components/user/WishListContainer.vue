@@ -1,9 +1,9 @@
 <template>
-  <div class="container" id="app" style = "margin-bottom: 700px">
-    <div class="row">
-        <div v-for="product in productsInWishlist" :key="product.id" class="col-md-4 col-6 my-1">
+  <div>
+    <div>
+        <div v-for="product in productsInWishlist" :key="product.id" class="col-md-4 col-6 my-1" v-if="productsInWishlist.length !== 0">
             <div class="card h-100">
-                <center><img :src="product.image" class="card-img-top" style = "height:50%; width: 50%; padding: 10%;"></center>
+                <div style = "height: inherit"><center><img :src="product.image" class="card-img-top" style = "height:60%; width: 60%; padding: 10%;"></center></div>
                 <div class="card-body">
                     <div class="card-title">
                         <router-link
@@ -25,17 +25,20 @@
                         </router-link>
                     </div>
                     <div>
-                        <span class="badge badge-pill badge-info">${{ product.price }}</span>
-                        <!-- <right><b-btn size="sm" class="float" variant="link" @click="remove(product.id)">Remove From Wishlist</b-btn></right> -->
+                        <center><h5><b-badge>{{ product.price }} &euro;</b-badge></h5></center>
+                        <center><b-btn size="sm" class="float" variant="link" type="submit" @click="removeFromFavourite(product.id)" style = "color: red">
+                            Remove From Wishlist
+                        </b-btn></center>
                     </div>
                 </div>
             </div>
             
-            <div v-if="productsInWishlist.length === 0">
-                <center><h3><p>Empty</p></h3></center>
-            </div>
+            
 
         </div>
+        <div v-if="productsInWishlist.length === 0">
+                <center><h4>Your Wishlist is empty.</h4></center>
+            </div>
     </div>     
   </div>
 </template>
@@ -49,7 +52,8 @@ export default {
   data () {
     return {
       pageTitle: 'Your Wishlist',
-      noProductLabel: 'Your wishlist is empty'
+      noProductLabel: 'Your wishlist is empty',
+      removeFromFavouriteLabel: 'Remove from favourite'
     }
   },
 
@@ -59,6 +63,7 @@ export default {
 
   computed: {
     productsInWishlist () {
+      console.log('product in wishlist')
       if (this.$store.state.userInfo.hasSearched) {
         return this.getProductByTitle();
       } else {
@@ -72,17 +77,13 @@ export default {
       let listOfProducts = this.$store.getters.productsAddedToFavourite,
           titleSearched = this.$store.state.userInfo.productTitleSearched;
       
+      console.log('getProduct')
       return this.productsFiltered = getByTitle(listOfProducts, titleSearched);
-    }
-  },
-  remove (id) {
+    },
+    removeFromFavourite (id) {
     console.log('Remove')
-    let data = {
-					id: id,
-					status: false
-			}
-			this.$store.commit('removeProductsFromFavourite', id);
-			// this.$store.commit('setAddedBtn', data);
+      this.$store.commit('removeFromFavourite', id);
+    }
   }
 }
 </script>

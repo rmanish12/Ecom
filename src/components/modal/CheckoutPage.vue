@@ -1,13 +1,13 @@
 <template>
-    <div style="margin-bottom: 670px">
+    <div>
         <div>
-                    <div v-if="products.length !== 0 & !isCheckoutSection">
+            <div v-if="products.length !== 0 & !isCheckoutSection">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
-                            <th>Rate</th>
+                            <th>Price</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
@@ -58,7 +58,7 @@
             <center><b-btn size="sm" class="float" variant="success" type="submit" @click="onNextBtn" v-show="products.length > 0 && !isCheckoutSection" style = "width: 40%; background-color: darkcyan">
                     Buy
                 </b-btn></center>
-    
+            
         </div>
     </div>
 </template>
